@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-white/90 backdrop-blur-md border border-white/20;
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #F59E0B 100%);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #1E3A8A, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+  }
+  
+  .fade-in {
+    @apply opacity-0 translate-y-4 transition-all duration-500;
+  }
+  
+  .fade-in-visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /*
+    Golden UI helpers
+    - .golden-strip: subtle animated gold shimmer (use under navbar)
+    - .gold-x: utility to color icons/buttons gold
+    - .golden-halo: subtle circular halo for gold icons (optional)
+  */
+  .golden-strip {
+    /* default thin strip styling; you can override height inline if needed */
+    height: 2px;
+    width: 100%;
+    border-radius: 9999px;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255,215,0,0.04) 0%,
+      rgba(255,215,0,0.12) 10%,
+      rgba(255,215,0,0.04) 25%,
+      rgba(255,215,0,0.01) 50%,
+      rgba(255,215,0,0.04) 75%,
+      rgba(255,215,0,0.12) 90%,
+      rgba(255,215,0,0.04) 100%
+    );
+    background-size: 200% 100%;
+    animation: golden-shimmer 6s linear infinite;
+    filter: saturate(1.05) blur(0.2px);
+    box-shadow: 0 2px 8px rgba(212,175,55,0.05);
+  }
+
+  .golden-strip--thin {
+    height: 2px;
+  }
+
+  .golden-strip--slim {
+    height: 3px;
+  }
+
+  .gold-x {
+    color: #FFD700; /* icon color */
+    /* for SVG strokes that use currentColor this will apply automatically */
+  }
+
+  .golden-halo {
+    display: inline-grid;
+    place-items: center;
+    border-radius: 9999px;
+    padding: 4px;
+    background: linear-gradient(180deg, rgba(255,215,0,0.06), rgba(255,215,0,0.02));
+    box-shadow: 0 4px 14px rgba(212,175,55,0.06);
+  }
+}
+
+@layer utilities {
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fadeInScale {
+    animation: fadeInScale 0.25s ease-out forwards;
+  }
+
+  /* golden shimmer keyframes for the thin strip */
+  @keyframes golden-shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  /* accessibility: respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .golden-strip,
+    .animate-fadeInScale {
+      animation: none !important;
+    }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-blue-600;
+}
