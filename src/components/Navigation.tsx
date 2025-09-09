@@ -178,7 +178,7 @@ const Navigation: React.FC<NavigationProps> = ({ onSearch }) => {
             <div className="relative flex items-center w-64">
               <input
                 type="text"
-                placeholder="Search projects or team..."
+                placeholder="Search "
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 pr-8 py-2 w-full rounded-lg border border-gray-600 bg-dark text-gray-100 focus:ring-2 focus:ring-primary focus:border-transparent"
